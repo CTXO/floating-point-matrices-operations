@@ -6,7 +6,11 @@
 
 class LimitedPrecision {
 private:
-    int value;
+    int mantissa;
+    int exp;
+    float value;
+
+
 
 public:
     // Constructor to convert float to limited precision
@@ -26,6 +30,9 @@ public:
     bool operator==(const LimitedPrecision& other) const;
     bool operator==(const int other) const;
     bool operator!=(const LimitedPrecision& other) const;
+    
+    int integer_digit_count(int f);
+    int decimal_digit_count(float f);
 
     // Example output operator
     friend std::ostream& operator<<(std::ostream& os, const LimitedPrecision& lp);
