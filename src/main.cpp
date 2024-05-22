@@ -62,8 +62,8 @@ int main() {
     };
     LimitedMatrix lm_2 = LimitedMatrix(lmv_2);
 
-    //Operations
-    //Inversion
+    // Operations
+    // Inversion
     // Matrix inv = m.inverse();
     // std::cout << "Original matrix:" << std::endl;
     // m.printMatrix();
@@ -89,39 +89,37 @@ int main() {
 
     //Properties
     //Associativity
-    // std::cout << "Original matrixes:" << std::endl;
-    // m.printMatrix();
-    // std::cout << std::endl;
-    // m_2.printMatrix();
-    // std::cout << std::endl;
-    // m_3.printMatrix();
-    // std::cout << std::endl;
+    std::cout << "Original matrixes:" << std::endl;
+    m.printMatrix();
+    std::cout << std::endl;
+    m_2.printMatrix();
+    std::cout << std::endl;
 
-    // double u = 2.637;
-    // double v = 3.719;
-    // double product = u*v;
+    double u = 2.637;
+    double v = 3.719;
+    double product = u*v;
 
-    // Matrix partial_product = m * u;
-    // Matrix result = partial_product * v;
-    // std::cout << "(m*u)*v:" << std::endl;
-    // result.printMatrix();
-    // result = m * product;
-    // std::cout << std::endl << "(u*v)*m" << std::endl;
-    // result.printMatrix();
-    // std::cout << std::endl;
+    Matrix partial_product = m * u;
+    Matrix result = partial_product * v;
+    std::cout << "(m*u)*v:" << std::endl;
+    result.printMatrix();
+    result = m * product;
+    std::cout << std::endl << "(u*v)*m" << std::endl;
+    result.printMatrix();
+    std::cout << std::endl;
 
-    // LimitedPrecision l_u = 2.637;
-    // LimitedPrecision l_v = 3.719;
-    // LimitedPrecision l_product = u*v;
+    LimitedPrecision l_u = 2.637;
+    LimitedPrecision l_v = 3.719;
+    LimitedPrecision l_product = u*v;
 
-    // LimitedMatrix l_partial_product = lm * l_u;
-    // LimitedMatrix l_result = l_partial_product * l_v;
-    // std::cout << "(lm*l_u)*l_v:" << std::endl;
-    // l_result.printMatrix();
-    // l_result = lm * l_product;
-    // std::cout << std::endl << "(l_u*l_v)*lm" << std::endl;
-    // l_result.printMatrix();
-    // std::cout << std::endl;
+    LimitedMatrix l_partial_product = lm * l_u;
+    LimitedMatrix l_result = l_partial_product * l_v;
+    std::cout << "(lm*l_u)*l_v:" << std::endl;
+    l_result.printMatrix();
+    l_result = lm * l_product;
+    std::cout << std::endl << "(l_u*l_v)*lm" << std::endl;
+    l_result.printMatrix();
+    std::cout << std::endl;
 
     //M * M^-1 = I
     // Matrix inv = m.inverse();

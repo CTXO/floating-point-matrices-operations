@@ -15,9 +15,15 @@ LimitedPrecision::LimitedPrecision(float f) {
     negative = f < 0;
     float f_abs = std::fabs(f);
     
-    std::pair<double, int> m_exp = normalize(f, MANTISSA_SIZE);
-    mantissa = m_exp.first;
-    exp = m_exp.second;
+    if (f == 0) {
+        mantissa = 0;
+        exp = 0;
+    }
+    else {
+        std::pair<double, int> m_exp = normalize(f, MANTISSA_SIZE);
+        mantissa = m_exp.first;
+        exp = m_exp.second;
+    }
     if (!negative && exp > MAX_EXP)  {
         throw std::runtime_error("Overflow");
     }
