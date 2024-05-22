@@ -1,49 +1,81 @@
 #include "LimitedPrecision.h"
+// const int PRECISION = 3
 
-const int PRECISION = 3;
+// // Scale factor for converting between integers and floats
+// const int SCALE_FACTOR = std::pow(10, PRECISION);
 
-// Scale factor for converting between integers and floats
-const int SCALE_FACTOR = std::pow(10, PRECISION);
-
-const int MANTISSA_SIZE = 5;
-const int MIN_EXP = -10;
-const int MAX_EXP = 10;
+const int MANTISSA_SIZE = 4;
+const int MIN_EXP = -5;
+const int MAX_EXP = 5;
 
 
 // Constructor to convert float to limited precision
 LimitedPrecision::LimitedPrecision(float f) {
-    int int_count = integer_digit_count(static_cast<int>(f));
-    int decimal_count = decimal_digit_count(f);
-    if (f > 0) {
-        exp = int_count;
-    }
-    else {
-        exp = int_count * -1;
-    }
-
-    if (exp > MAX_EXP)  {
+    
+    negative = f < 0;
+    float f_abs = std::fabs(f);
+    
+    std::pair<double, int> m_exp = normalize(f, MANTISSA_SIZE);
+    mantissa = m_exp.first;
+    exp = m_exp.second;
+    if (!negative && exp > MAX_EXP)  {
         throw std::runtime_error("Overflow");
     }
-    else if (exp < MIN_EXP) {
+    else if (negative && exp*-1 < MIN_EXP) {
         throw std::runtime_error("Underflow");
     }
-
-    float scaled = std::pow(10, exp) * f;
-    float rounded = std::roundf(scaled);
-
-    if (int_count >= MANTISSA_SIZE) {
-        mantissa = static_cast<int>(rounded / std::pow(10, int_count - MANTISSA_SIZE));
-    } 
-    else {
-        int mantissa_factor = MANTISSA_SIZE - int_count;
-        mantissa = static_cast<int>(rounded * std::pow(10, mantissa_factor));
-    }
     
-    if (integer_digit_count(mantissa) != MANTISSA_SIZE) {
-        throw std::runtime_error("Mantissa size is wrong");
-    }
+    // int int_count = integer_digit_count(static_cast<int>(f));
+    // std::cout << "Int count is " << int_count << '\n';
     
-    value = static_cast<float>(*this);
+    
+    // exp = int_count;
+
+    // f = std::fabs(f);
+    
+    // float digits_rounded = roundToSignificantDigits(f, MANTISSA_SIZE);
+    // int decimalCount = MANTISSA_SIZE - int_count;
+    // std::cout << "Digits rounded is " << digits_rounded << '\n';
+    // std::cout << "Digits decimal count is " << decimalCount << '\n';
+    // std::cout << "Multiply by:" << std::pow(10, decimalCount) << '\n';
+    // mantissa = digits_rounded * std::pow(10, decimalCount); 
+    // std::cout << "mantissa is " << mantissa << '\n';
+
+    // in -12.3458
+    // - 12345.8
+    // - round (12345.8)
+    // out - 12.346
+    // 
+}
+
+std::pair<double, int> LimitedPrecision::normalize(double value, int digits) {
+    int exponent = 0;
+
+    if (value != 0.0) {
+    
+        while (fabs(value) >= 1.0) {
+            value /= 10.0;
+            exponent++;
+        }
+        while (fabs(value) < 0.1) {
+            value *= 10.0;
+            exponent--;
+        }
+    }
+
+    double factor = pow(10, digits - static_cast<int>(floor(log10(fabs(value)))) - 1);
+    value = round(value * factor) / factor;
+
+    return std::make_pair(value, exponent);
+}
+
+double LimitedPrecision::roundToSignificantDigits(double value, int digits) {
+    if (value == 0.0) {
+        return 0.0;
+    }
+
+    double factor = pow(10, digits - static_cast<int>(floor(log10(fabs(value)))) - 1);
+    return round(value * factor) / factor;
 }
 
 int LimitedPrecision::integer_digit_count(int f) {
@@ -56,15 +88,43 @@ int LimitedPrecision::integer_digit_count(int f) {
     return std::to_string(f).length();
 }
 
-int LimitedPrecision::decimal_digit_count(float f) {
-    float float_parsed = std::abs(f);
-    float decimals = float_parsed - static_cast<int>(float_parsed);
-    return std::to_string(decimals).length() - 2;
+// int LimitedPrecision::decimal_digit_count(float f) {
+//     float float_parsed = std::fabs(f);
+//     float decimals = float_parsed - static_cast<int>(float_parsed);
+//     std::cout << "DECIMALS " << decimals << " string: " << std::to_string(decimals) << " count: " << std::to_string(decimals).length() << '\n';
+//     return std::to_string(decimals).length() - 2;
+// }
+int LimitedPrecision::decimal_digit_count(float num) {
+    int count = 0;
+    num = std::fabs(num);
+    num = num - static_cast<int>(num);
+
+    while (num > 0.001) {
+        num *= 10;
+        count++;
+        num = num - static_cast<int>(num);
+        // Avoid infinite loop by checking if num is stuck
+        if (count > 10) {
+            break;
+        }
+    }
+    
+    return count;
 }
+
 
 // Conversion operator to convert limited precision to float
 LimitedPrecision::operator float() const {
-    return static_cast<float>(mantissa / std::pow(10, MANTISSA_SIZE - exp));
+    // 1.764
+    // mantissa - 1764
+    // exp - 1
+    // negative - false;
+    // 1764 / 10^4
+    // out - 12.346
+    // float rounded = std::roundf(f);
+    
+    float value = mantissa * std::pow(10, exp);
+    return value;
 }
 
 // Example arithmetic operations

@@ -4,6 +4,7 @@
 #include "LimitedMatrix.h"
 #include "LimitedPrecision.h"
 
+
 int main() {
     double x = 1.764;
     double y = 2.895;
@@ -14,27 +15,28 @@ int main() {
     double z_2 = 3.787;
     double w_2 = 2.686;
 
-    LimitedPrecision a = x; 
-    LimitedPrecision b = y;
-    LimitedPrecision c = z;
-    LimitedPrecision d = w;
-    LimitedPrecision a_2 = x_2; 
-    LimitedPrecision b_2 = y_2;
-    LimitedPrecision c_2 = z_2;
-    LimitedPrecision d_2 = w_2;
+    LimitedPrecision a = LimitedPrecision(x); 
+    LimitedPrecision b = LimitedPrecision(y);
+    LimitedPrecision c = LimitedPrecision(z);
+    LimitedPrecision d = LimitedPrecision(w);
+    LimitedPrecision a_2 = LimitedPrecision(x_2); 
+    LimitedPrecision b_2 = LimitedPrecision(y_2);
+    LimitedPrecision c_2 = LimitedPrecision(z_2);
+    LimitedPrecision d_2 = LimitedPrecision(w_2);
 
 
-    // LimitedPrecision sum = a + b;
-    // LimitedPrecision difference = a - b;
-    // LimitedPrecision product = a * b;
-    // LimitedPrecision quotient = a / b;
+    LimitedPrecision sum = a + b;
+    LimitedPrecision difference = a - b;
+    LimitedPrecision product = a * b;
+    LimitedPrecision quotient = a / b;
 
-    // std::cout << "a: " << a << std::endl;
-    // std::cout << "b: " << b << std::endl;
-    // std::cout << "Sum: " << sum << std::endl;
-    // std::cout << "Difference: " << difference << std::endl;
-    // std::cout << "Product: " << product << std::endl;
-    // std::cout << "Quotient: " << quotient << std::endl;
+    std::cout << "a: " << static_cast<float>(a) << std::endl;
+    std::cout << "b: " << static_cast<float>(b) << std::endl;
+    std::cout << "Sum: " << sum << std::endl;
+    std::cout << "Difference: " << difference << std::endl;
+    std::cout << "Product: " << product << std::endl;
+    std::cout << "Quotient: " << quotient << std::endl;
+    
 
     std::vector<std::vector<double>> mv = {
         {x, z},
@@ -160,10 +162,10 @@ int main() {
     // return 0;
 
     //Comultativity
-    m.inverse().transpose().printMatrix();
-    m.transpose().inverse().printMatrix();
-    lm.inverse().transpose().printMatrix();
-    lm.transpose().inverse().printMatrix();
+    // m.inverse().transpose().printMatrix();
+    // m.transpose().inverse().printMatrix();
+    // lm.inverse().transpose().printMatrix();
+    // lm.transpose().inverse().printMatrix();
     
 
 }

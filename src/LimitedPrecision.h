@@ -4,11 +4,13 @@
 #include <iostream>
 #include <cmath>
 
+
 class LimitedPrecision {
 private:
-    int mantissa;
+    double mantissa;
     int exp;
     float value;
+    bool negative;
 
 
 
@@ -33,6 +35,8 @@ public:
     
     int integer_digit_count(int f);
     int decimal_digit_count(float f);
+    double roundToSignificantDigits(double value, int digits);
+    std::pair<double, int> normalize(double value, int digits);
 
     // Example output operator
     friend std::ostream& operator<<(std::ostream& os, const LimitedPrecision& lp);
