@@ -190,6 +190,5 @@ void LimitedMatrix::printMatrix() const {
         }
         std::cout << "\n";
     }
-    std::cout << "\n";
 }
 
