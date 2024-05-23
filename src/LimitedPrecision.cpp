@@ -153,7 +153,6 @@ bool LimitedPrecision::operator==(const LimitedPrecision& other) const {
 }
 
 bool LimitedPrecision::operator==(const int other) const {
-    std::cout << "Value comparison: " << value << '\n';
     return value == other;
 }
 
