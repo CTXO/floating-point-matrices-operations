@@ -122,15 +122,15 @@ int main() {
     // std::cout << std::endl;
 
     //M * M^-1 = I
-    Matrix inv = m.inverse();
-    Matrix result = m * inv;
-    result.printMatrix();
-    std::cout<< std::endl;
+    // Matrix inv = m.inverse();
+    // Matrix result = m * inv;
+    // result.printMatrix();
+    // std::cout<< std::endl;
 
     
-    LimitedMatrix l_inv = lm.inverse();
-    LimitedMatrix l_result = lm * l_inv;
-    l_result.printMatrix();
+    // LimitedMatrix l_inv = lm.inverse();
+    // LimitedMatrix l_result = lm * l_inv;
+    // l_result.printMatrix();
 
     // (M^-1)^-1 = M
     // m.printMatrix();
