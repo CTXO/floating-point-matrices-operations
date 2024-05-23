@@ -189,7 +189,5 @@ void Matrix::printMatrix() const {
         }
         std::cout << "\n";
     }
-    std::cout << std::endl;
-
 }
 

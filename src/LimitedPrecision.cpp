@@ -4,7 +4,7 @@
 // // Scale factor for converting between integers and floats
 // const int SCALE_FACTOR = std::pow(10, PRECISION);
 
-const int MANTISSA_SIZE = 5;
+const int MANTISSA_SIZE = 4;
 const int MIN_EXP = -5;
 const int MAX_EXP = 5;
 
