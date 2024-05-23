@@ -118,7 +118,7 @@ LimitedMatrix LimitedMatrix::inverse() const {
         }
 
         LimitedPrecision pivot = augmented(i, i);
-    
+        bool comparaçao = pivot == 0;
         if (pivot == 0) {
             throw std::runtime_error("LimitedMatrix is singular, cannot be inverted");
         }

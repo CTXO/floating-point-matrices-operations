@@ -6,14 +6,14 @@
 
 
 int main() {
-    double x = 1.764;
-    double y = 2.895;
-    double z = 3.967;
-    double w = 4.789;
-    double x_2 = 5.928;
-    double y_2 = 6.864;
-    double z_2 = 3.787;
-    double w_2 = 2.686;
+    double x = 1.7649;
+    double y = 2.8959;
+    double z = 3.9679;
+    double w = 4.7899;
+    double x_2 = 5.9289;
+    double y_2 = 6.8649;
+    double z_2 = 3.7879;
+    double w_2 = 2.6869;
 
     LimitedPrecision a = LimitedPrecision(x); 
     LimitedPrecision b = LimitedPrecision(y);
@@ -25,17 +25,17 @@ int main() {
     LimitedPrecision d_2 = LimitedPrecision(w_2);
 
 
-    LimitedPrecision sum = a + b;
-    LimitedPrecision difference = a - b;
-    LimitedPrecision product = a * b;
-    LimitedPrecision quotient = a / b;
+    // LimitedPrecision sum = a + b;
+    // LimitedPrecision difference = a - b;
+    // LimitedPrecision product = a * b;
+    // LimitedPrecision quotient = a / b;
 
-    std::cout << "a: " << static_cast<float>(a) << std::endl;
-    std::cout << "b: " << static_cast<float>(b) << std::endl;
-    std::cout << "Sum: " << sum << std::endl;
-    std::cout << "Difference: " << difference << std::endl;
-    std::cout << "Product: " << product << std::endl;
-    std::cout << "Quotient: " << quotient << std::endl;
+    // std::cout << "a: " << static_cast<float>(a) << std::endl;
+    // std::cout << "b: " << static_cast<float>(b) << std::endl;
+    // std::cout << "Sum: " << sum << std::endl;
+    // std::cout << "Difference: " << difference << std::endl;
+    // std::cout << "Product: " << product << std::endl;
+    // std::cout << "Quotient: " << quotient << std::endl;
     
 
     std::vector<std::vector<double>> mv = {
@@ -89,48 +89,48 @@ int main() {
 
     //Properties
     //Associativity
-    std::cout << "Original matrixes:" << std::endl;
-    m.printMatrix();
-    std::cout << std::endl;
-    m_2.printMatrix();
-    std::cout << std::endl;
+    // std::cout << "Original matrixes:" << std::endl;
+    // m.printMatrix();
+    // std::cout << std::endl;
+    // m_2.printMatrix();
+    // std::cout << std::endl;
 
-    double u = 2.637;
-    double v = 3.719;
-    double product = u*v;
+    // double u = 2.637;
+    // double v = 3.719;
+    // double product = u*v;
 
-    Matrix partial_product = m * u;
-    Matrix result = partial_product * v;
-    std::cout << "(m*u)*v:" << std::endl;
-    result.printMatrix();
-    result = m * product;
-    std::cout << std::endl << "(u*v)*m" << std::endl;
-    result.printMatrix();
-    std::cout << std::endl;
+    // Matrix partial_product = m * u;
+    // Matrix result = partial_product * v;
+    // std::cout << "(m*u)*v:" << std::endl;
+    // result.printMatrix();
+    // result = m * product;
+    // std::cout << std::endl << "(u*v)*m" << std::endl;
+    // result.printMatrix();
+    // std::cout << std::endl;
 
-    LimitedPrecision l_u = 2.637;
-    LimitedPrecision l_v = 3.719;
-    LimitedPrecision l_product = u*v;
+    // LimitedPrecision l_u = 2.637;
+    // LimitedPrecision l_v = 3.719;
+    // LimitedPrecision l_product = u*v;
 
-    LimitedMatrix l_partial_product = lm * l_u;
-    LimitedMatrix l_result = l_partial_product * l_v;
-    std::cout << "(lm*l_u)*l_v:" << std::endl;
-    l_result.printMatrix();
-    l_result = lm * l_product;
-    std::cout << std::endl << "(l_u*l_v)*lm" << std::endl;
-    l_result.printMatrix();
-    std::cout << std::endl;
+    // LimitedMatrix l_partial_product = lm * l_u;
+    // LimitedMatrix l_result = l_partial_product * l_v;
+    // std::cout << "(lm*l_u)*l_v:" << std::endl;
+    // l_result.printMatrix();
+    // l_result = lm * l_product;
+    // std::cout << std::endl << "(l_u*l_v)*lm" << std::endl;
+    // l_result.printMatrix();
+    // std::cout << std::endl;
 
     //M * M^-1 = I
-    // Matrix inv = m.inverse();
-    // Matrix result = m * inv;
-    // result.printMatrix();
-    // std::cout<< std::endl;
+    Matrix inv = m.inverse();
+    Matrix result = m * inv;
+    result.printMatrix();
+    std::cout<< std::endl;
 
     
-    // LimitedMatrix l_inv = lm.inverse();
-    // LimitedMatrix l_result = lm * l_inv;
-    // l_result.printMatrix();
+    LimitedMatrix l_inv = lm.inverse();
+    LimitedMatrix l_result = lm * l_inv;
+    l_result.printMatrix();
 
     // (M^-1)^-1 = M
     // m.printMatrix();

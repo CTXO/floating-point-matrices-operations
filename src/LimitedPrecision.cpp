@@ -4,7 +4,7 @@
 // // Scale factor for converting between integers and floats
 // const int SCALE_FACTOR = std::pow(10, PRECISION);
 
-const int MANTISSA_SIZE = 4;
+const int MANTISSA_SIZE = 5;
 const int MIN_EXP = -5;
 const int MAX_EXP = 5;
 
@@ -30,6 +30,8 @@ LimitedPrecision::LimitedPrecision(float f) {
     else if (negative && exp*-1 < MIN_EXP) {
         throw std::runtime_error("Underflow");
     }
+    
+    value = mantissa * std::pow(10, exp);
     
     // int int_count = integer_digit_count(static_cast<int>(f));
     // std::cout << "Int count is " << int_count << '\n';
@@ -121,15 +123,6 @@ int LimitedPrecision::decimal_digit_count(float num) {
 
 // Conversion operator to convert limited precision to float
 LimitedPrecision::operator float() const {
-    // 1.764
-    // mantissa - 1764
-    // exp - 1
-    // negative - false;
-    // 1764 / 10^4
-    // out - 12.346
-    // float rounded = std::roundf(f);
-    
-    float value = mantissa * std::pow(10, exp);
     return value;
 }
 
@@ -160,6 +153,7 @@ bool LimitedPrecision::operator==(const LimitedPrecision& other) const {
 }
 
 bool LimitedPrecision::operator==(const int other) const {
+    std::cout << "Value comparison: " << value << '\n';
     return value == other;
 }
 
