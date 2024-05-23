@@ -144,26 +144,25 @@ int main() {
     // u*(A+B)
     // uA + uB
     //
-    // double u = 2.989;
+    // double u = 5.989;
     // Matrix sum = m + m_2;
     // Matrix product = sum * u;
     // Matrix pre_product = m*u + m_2*u;
     // product.printMatrix();
     // pre_product.printMatrix();
 
-    // LimitedPrecision l_u = 2.989;
+    // LimitedPrecision l_u = 5.989;
     // LimitedMatrix l_sum = lm + lm_2;
     // LimitedMatrix l_product = l_sum * l_u;
     // LimitedMatrix l_pre_product = lm*l_u + lm_2*l_u;
     // l_product.printMatrix();
     // l_pre_product.printMatrix();
-    // return 0;
 
     //Comultativity
-    // m.inverse().transpose().printMatrix();
-    // m.transpose().inverse().printMatrix();
-    // lm.inverse().transpose().printMatrix();
-    // lm.transpose().inverse().printMatrix();
+    m.inverse().transpose().printMatrix();
+    m.transpose().inverse().printMatrix();
+    lm.inverse().transpose().printMatrix();
+    lm.transpose().inverse().printMatrix();
     
 
 }
